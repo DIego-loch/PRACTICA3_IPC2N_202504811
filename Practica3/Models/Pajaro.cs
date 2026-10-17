@@ -5,16 +5,20 @@ namespace Practica3
 {
     public class Pajaro : Animales
     {
-        public string raza { get; set; }
-        public string tamaño { get; set; }
+        public int envergadura { get; set; }
+        public bool volar { get; set; }
 
         public Pajaro
-        (string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado, string raza, string tamaño) :
+        (string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado, int Envergadura, bool vuela) :
         base(Nombre, Peso, Sexo, Edad, propie, Estado)
         {
-            this.raza = raza;
-            this.tamaño = tamaño;
+            envergadura = Envergadura;
+            volar = vuela;
         }
 
+        public override double CalcularDosis(double DosisMascota)
+        {
+            return base.CalcularDosis(DosisMascota) * 0.50;
+        }
     }
 }

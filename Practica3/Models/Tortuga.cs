@@ -5,16 +5,20 @@ namespace Practica3
 {
     public class Tortuga : Animales
     {
-        public string raza { get; set; }
-        public string tamaño { get; set; }
+        public string caparazon { get; set; }
+        public bool acuatico { get; set; }
 
         public Tortuga
-        (string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado, string raza, string tamaño) :
+        (string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado, string Caparazon, bool Actuatico) :
         base(Nombre, Peso, Sexo, Edad, propie, Estado)
         {
-            this.raza = raza;
-            this.tamaño = tamaño;
+            caparazon = Caparazon;
+            acuatico = Actuatico;
         }
 
+        public override double CalcularDosis(double DosisMascota)
+        {
+            return base.CalcularDosis(DosisMascota) * 0.80;
+        }
     }
 }

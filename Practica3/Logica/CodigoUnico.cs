@@ -9,13 +9,13 @@ namespace Practica3
         {
             Random cod = new Random();
             string Character = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            char[] code = new char[8];
+            string code = "";
             for(int i = 0; i < 8; i++)
             {
-                code[i] = Character[cod.Next(Character.Length)];
+                code = code + Character[cod.Next(Character.Length)];
             }
 
-            return new string(code);
+            return code;
         }
     }
 }

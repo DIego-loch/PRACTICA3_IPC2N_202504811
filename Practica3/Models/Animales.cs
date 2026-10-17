@@ -15,6 +15,7 @@ namespace Practica3
 
         public Animales(string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado)
         {
+
             nombre = Nombre;
             peso = Peso;
             sexo = Sexo;
