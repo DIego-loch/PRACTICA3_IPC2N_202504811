@@ -7,8 +7,9 @@ namespace Practica3
     {
         public NodoCategoria? Cabeza { get; set; }
 
-        public void IngresarCategoria(NodoAnimales Animales, string NombreCategorias)
+        public void Ingresar(NodoAnimales Animales, string NombreCategorias)
         {
+
             NodoCategoria? aux = Cabeza;
 
             // verifica si existe y si es null la cabeza sale y asigna nodo a Cabeza
@@ -27,9 +28,13 @@ namespace Practica3
 
                 // hacemos que cabeza apunte a la lista ya completa
                 Cabeza = NodoCate;
+
+            } else
+            {
+                Animales.NodoSiguiente = aux.NodoActual;
+                aux.NodoActual = Animales;
             }
 
-           // NodoAnimales NodoAnimal = new NodoAnimales()
         }
     }
 }
