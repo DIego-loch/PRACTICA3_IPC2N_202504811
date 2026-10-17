@@ -4,14 +4,14 @@ namespace Practica3
 {
     public class NodoCategoria
     {
-        public string NombreCategoria { get; set; }
-        public NodoAnimales NodoActual { get; set; }
+        public string? NombreCategoria { get; set; }
+        public NodoAnimales? NodoActual { get; set; }
         public NodoCategoria? NodoSiguiente { get; set; }
 
-        public NodoCategoria(NodoAnimales datos, string nombre)
+        public NodoCategoria(NodoAnimales dato, string NombreCategorias)
         {
-            NombreCategoria = nombre;
-            NodoActual = datos;
+            NombreCategoria = NombreCategorias;
+            NodoActual = dato;
             NodoSiguiente = null;
         }
     }
