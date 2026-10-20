@@ -31,23 +31,23 @@ namespace Practica3
             return null;
         }
 
-        public bool EditarAnimal(Animales MascotaActualizada, string codigo)
+        public void EditarAnimal(Animales MascotaActualizada, string codigo)
         {
             NodoAnimales? aux = BuscarAnimal(codigo);
-            if (aux == null) return false;
+            if (aux == null) return;
             aux.Dato = MascotaActualizada;
-            return true;
+            return;
         }
 
-        public bool EliminarAnimal(string codigo)
+        public void EliminarAnimal(string codigo)
         {
-            if (NodoRaiz == null) return false;
+            if (NodoRaiz == null) return;
 
             // el nodo a eliminar es la raiz
             if (NodoRaiz.Dato.CodigoUnicos == codigo)
             {
                 NodoRaiz = NodoRaiz.NodoSiguiente;
-                return true;
+                return;
             }
 
             NodoAnimales? NodoAnterior = null;
@@ -57,13 +57,13 @@ namespace Practica3
             {
                 if (NodoActual.Dato.CodigoUnicos == codigo)
                 {
-                    NodoAnterior.NodoSiguiente = NodoActual.NodoSiguiente;
-                    return true;
+                    NodoAnterior?.NodoSiguiente = NodoActual.NodoSiguiente;
+                    return;
                 }
                 NodoAnterior = NodoActual;
                 NodoActual = NodoActual.NodoSiguiente;
             }
-            return false;
+            return;
 
         }
     }

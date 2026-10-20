@@ -1,0 +1,51 @@
+@using Practica3
+@model ListaModelo
+
+@{
+    ViewData["Title"] = "Lista de Perros";
+}
+
+<h1>Lista de Perros</h1>
+
+<p>
+    <a href = "/Perro/Registrar">Registrar Nueva Mascota</a>
+</p>
+
+<table border = "1">
+    <thead>
+        <tr>
+            <th> Código </th>
+            <th> Nombre </th>
+            <th> Peso </th>
+            <th> Acciones </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            var NodoActual = Model.NodoRaiz;
+
+            while(NodoActual != null)
+            {
+                <tr>
+
+                    <td> @NodoActual.Dato.CodigoUnicos </td>
+                    <td> @NodoActual.Dato.nombre </td>
+                    <td> @NodoActual.Dato.peso </td>
+
+                    <td>
+                    <a href = "/Perro/DetalleAnimales?Codigo=@NodoActual.Dato.CodigoUnicos"> Detalles </a>
+                    <a href = "/Perro/EditarMascota?Codigo=@NodoActual.Dato.CodigoUnicos"> Editar </a>
+
+                    <form action="/Perro/EliminarMascota" method="post" style="display:inline;">
+                        <input type="hidden" name="Codigo" value="@NodoActual.Dato.CodigoUnicos" />
+                        <button type="submit"> Eliminar </button>
+                    </form>
+                    </td>
+                </tr>
+
+            NodoActual = NodoActual.NodoSiguiente;
+            }
+        }
+    </tbody>
+</table>

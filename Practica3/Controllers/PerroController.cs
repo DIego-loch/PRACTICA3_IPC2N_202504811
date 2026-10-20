@@ -4,15 +4,81 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Practica3
 {
-
-
     public class PerroController : Controller
     {
-        private readonly ListaModelo? ListaPerro;
-        public PerroController(ListaModelo Instancias)
+        private readonly Instancias instancia;
+
+        public PerroController(Instancias instancias)
         {
-            ListaPerro = Instancias;
+            instancia = instancias;
         }
 
+        [HttpGet]
+        public IActionResult Index()
+        {
+            return View(instancia.Perro);
+        }
+
+        [HttpGet]
+        public IActionResult Registrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Registrar(Perro perrito)
+        {
+            instancia.Perro.IngresarLista(perrito);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult DetalleAnimales(string Codigo)
+        {
+            var Nodo = instancia.Perro.BuscarAnimal(Codigo);
+            if (Nodo == null) return RedirectToAction("Index");
+            return View(Nodo.Dato);
+        }
+
+        [HttpGet]
+        public IActionResult EditarMascota(string Codigo)
+        {
+            var NodoEncontrado = instancia.Perro.BuscarAnimal(Codigo);
+            if (NodoEncontrado == null) return RedirectToAction("Index");
+            return View(NodoEncontrado.Dato);
+        }
+
+        [HttpPost]
+        public IActionResult EditarMascota(Animales Mascota, string Codigo)
+        {
+            instancia.Perro.EditarAnimal(Mascota, Codigo);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult EliminarMascota(string Codigo)
+        {
+            instancia.Perro.EliminarAnimal(Codigo);
+            return RedirectToAction("Index");
+
+        }
+
+        [HttpPost]
+        public IActionResult CambiarEstado(string Codigo, bool estado)
+        {
+            var Mascota = instancia.Perro.BuscarAnimal(Codigo);
+            if (Mascota == null) return RedirectToAction("Index");
+            Mascota.Dato.estado = estado;
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult CalcularDosis(double dosis, string Codigo)
+        {
+            var Mascota = instancia.Perro.BuscarAnimal(Codigo);
+            if (Mascota == null) return RedirectToAction("Index");
+            var Dosis = Mascota.Dato.CalcularDosis(dosis);
+            return View(Dosis);
+        }
     }
 }

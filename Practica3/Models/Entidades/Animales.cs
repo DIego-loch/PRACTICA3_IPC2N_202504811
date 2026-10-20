@@ -15,13 +15,13 @@ namespace Practica3
 
         public Animales(string Nombre, double Peso, string Sexo, int Edad, string propie, bool Estado)
         {
-
             nombre = Nombre;
             peso = Peso;
             sexo = Sexo;
             edad = Edad;
             propietario = propie;
             estado = Estado;
+            this.Codigo();
         }
 
         public virtual double CalcularDosis(double DosisMascota)
@@ -29,9 +29,9 @@ namespace Practica3
             return (peso * DosisMascota);
         }
 
-        public bool EstadoMascota()
+        public string EstadoMascota()
         {
-            return estado ? true : false;
+            return estado ? "Sano" : "Enfermo";
         }
 
         public virtual void Codigo()
